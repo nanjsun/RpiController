@@ -2,12 +2,14 @@ package com.loiserver.picontrollerjava.model;
 
 import com.pi4j.io.gpio.*;
 import com.pi4j.util.CommandArgumentParser;
-import com.pi4j.wiringpi.Gpio.*;
+import com.pi4j.wiringpi.Gpio;
 
 public class MotorForHight{
     private GpioController gpio;
     private Pin pin;
     private GpioPinPwmOutput pwm;
+    private GpioPinDigitalOutput motorEnable;
+    private GpioPinDigitalOutput motorDirection;
 
     public MotorForHight(){
         pin = CommandArgumentParser.getPin(
@@ -41,6 +43,54 @@ public class MotorForHight{
         if (gpio != null){
             gpio.shutdown();
         }
+        pwm.setPwm(0);
 
     }
+    public void motorSetEnable(){
+        if(gpio == null){
+            gpio = GpioFactory.getInstance();
+        }
+        if(motorEnable == null){
+
+            motorEnable = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "enable hight motor", PinState.LOW);
+        }
+
+        motorEnable.high();
+    }
+    public void motorSetDisable(){
+        if(gpio == null){
+            gpio = GpioFactory.getInstance();
+        }
+        if(motorEnable == null){
+
+            motorEnable = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "enable hight motor", PinState.LOW);
+        }
+        motorEnable.low();
+    }
+
+    public void motorSetCw(){
+        if(gpio == null){
+            gpio = GpioFactory.getInstance();
+        }
+        if(motorDirection == null){
+
+            motorDirection = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "enable hight motor", PinState.LOW);
+        }
+        motorDirection.high();
+    }
+
+    public void motorSetCCw(){
+        if(gpio == null){
+            gpio = GpioFactory.getInstance();
+        }
+        if(motorDirection == null){
+
+            motorDirection = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "enable hight motor", PinState.LOW);
+        }
+        motorDirection.low();
+    }
+
+
+
+
 }

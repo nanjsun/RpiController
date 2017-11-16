@@ -21,19 +21,20 @@ public class MotorForHightController {
         }
 
         motorForHight.pwnOutput(pwmValue, args);
+        motorForHight.motorSetCw();
+        motorForHight.motorSetEnable();
+
 
         return "running";
     }
 
+    @RequestMapping(value = "/pwmoff")
     public String stopMotor(){
-        if(motorForHight == null){
-            motorForHight = new MotorForHight();
+        if(motorForHight != null){
+            motorForHight.pwmShotduwn();
+            motorForHight.motorSetCCw();
+            motorForHight.motorSetDisable();
         }
-        motorForHight.pwmShotduwn();
-
-
-        return "stop";
+        return "stop!";
     }
-
-
 }
