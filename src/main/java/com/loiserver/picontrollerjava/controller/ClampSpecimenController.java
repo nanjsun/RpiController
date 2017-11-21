@@ -13,12 +13,16 @@ public class ClampSpecimenController implements WritePortsStateController {
     private WritePortsState writePortsState;
 
     @RequestMapping("/clampSpecimenOn")
-    public void setState(){
+    public String setState(){
         writePortsState.setStat();
+        System.out.println("clampSpecimen on!");
+        return "clampSpecimen on!";
     }
 
     @RequestMapping("/clampSpecimenOff")
-    public void unSetState(){
+    public String unSetState(){
         writePortsState.unSetState();
+        System.out.println("clampSpecimen off!");
+        return "clampSpecimen off!";
     }
 }

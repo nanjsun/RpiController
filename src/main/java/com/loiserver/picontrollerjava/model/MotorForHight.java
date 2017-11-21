@@ -43,7 +43,7 @@ public class MotorForHight implements Motors{
     }
     public void pwmShotduwn(){
         if (gpio != null){
-            gpio.shutdown();
+//            gpio.shutdown();
         }
         pwm.setPwm(0);
 

@@ -1,6 +1,6 @@
 package com.loiserver.picontrollerjava.controller;
 
 public interface WritePortsStateController {
-    void setState();
-    void unSetState();
+    String setState();
+    String unSetState();
 }
