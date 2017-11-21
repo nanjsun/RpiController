@@ -3,8 +3,10 @@ package com.loiserver.picontrollerjava.model;
 import com.pi4j.io.gpio.*;
 import com.pi4j.util.CommandArgumentParser;
 import com.pi4j.wiringpi.Gpio;
+import org.springframework.stereotype.Component;
 
-public class MotorForHight{
+@Component
+public class MotorForHight implements Motors{
     private GpioController gpio;
     private Pin pin;
     private GpioPinPwmOutput pwm;

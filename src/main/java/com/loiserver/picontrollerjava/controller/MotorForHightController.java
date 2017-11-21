@@ -1,13 +1,18 @@
 package com.loiserver.picontrollerjava.controller;
 
 import com.loiserver.picontrollerjava.model.MotorForHight;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class MotorForHightController {
+@Component
+public class MotorForHightController implements MotorsController{
+
+    @Autowired
     private MotorForHight motorForHight;
 
 
@@ -16,9 +21,9 @@ public class MotorForHightController {
 
         String pwnValue;
         String[] args = {"500", "999"};
-        if(motorForHight == null){
-            motorForHight = new MotorForHight();
-        }
+//        if(motorForHight == null){
+//            motorForHight = new MotorForHight();
+//        }
 
         motorForHight.pwnOutput(pwmValue, args);
         motorForHight.motorSetCw();

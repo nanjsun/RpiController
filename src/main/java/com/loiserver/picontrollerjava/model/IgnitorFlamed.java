@@ -3,8 +3,10 @@ package com.loiserver.picontrollerjava.model;
 import com.pi4j.io.gpio.*;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
+import org.springframework.stereotype.Component;
 
-public class IgnitorFlamed {
+@Component
+public class IgnitorFlamed implements ReadPortsState {
     private GpioController gpio;
     private GpioPinDigitalInput ignitorFlameDetect;
     private boolean ignitorFlameState = false;
@@ -23,7 +25,7 @@ public class IgnitorFlamed {
         });
     }
 
-    public boolean getIgnitorFlameState(){
+    public boolean getStat(){
         return ignitorFlameState;
     }
 }
