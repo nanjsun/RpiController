@@ -7,7 +7,7 @@ import java.io.IOException;
 public interface UARTToActors {
     void sendToGasSupplier(String messageWillsent) throws IOException;
     String getReceivedFromGasSupplierString();
-    int getI();
+//    int getI();
 
 }
 

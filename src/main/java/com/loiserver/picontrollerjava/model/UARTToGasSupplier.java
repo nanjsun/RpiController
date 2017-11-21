@@ -7,20 +7,22 @@ import com.pi4j.io.serial.SerialDataEvent;
 import com.pi4j.io.serial.SerialDataEventListener;
 import com.pi4j.io.serial.SerialFactory;
 import com.pi4j.io.serial.impl.SerialImpl;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-//@Service
+@Component
 public class UARTToGasSupplier implements UARTToActors{
     private Serial serial;
     private ArrayList receivedFromGasSupplier = new ArrayList();
     private SerialConfig config;
-    private int i;
+//    private int i;
 
     public UARTToGasSupplier() throws IOException, InterruptedException{
-        i = 10086;
+//        i = 10086;
         System.out.println("serial init begain!");
 //        receivedFromGasSupplier = new ArrayList();
         System.out.println("receivedFromGasSupplier init completed!");
@@ -32,7 +34,6 @@ public class UARTToGasSupplier implements UARTToActors{
             public void dataReceived(SerialDataEvent event) {
 
                 try {
-
 //                  add received code to the receivedFromGasSupplier
                     System.out.println("---> receving data from uart");
                     final String receivedString = event.getAsciiString();
@@ -93,10 +94,10 @@ public class UARTToGasSupplier implements UARTToActors{
         return receivedFromGasSupplier.toString();
     }
 
-    public int getI(){
-        System.out.println("i = " + i);
-        return i;
-
-    }
+//    public int getI(){
+//        System.out.println("i = " + i);
+//        return i;
+//
+//    }
 }
 
