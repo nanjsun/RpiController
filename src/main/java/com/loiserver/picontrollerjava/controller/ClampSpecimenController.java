@@ -1,5 +1,6 @@
 package com.loiserver.picontrollerjava.controller;
 
+import com.loiserver.picontrollerjava.model.ClampSpecimen;
 import com.loiserver.picontrollerjava.model.WritePortsState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,18 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 @Component
 public class ClampSpecimenController implements WritePortsStateController {
     @Autowired
-    private WritePortsState writePortsState;
+    private ClampSpecimen clampSpecimen;
 
     @RequestMapping("/clampSpecimenOn")
     public String setState(){
-        writePortsState.setStat();
+        clampSpecimen.setStat();
         System.out.println("clampSpecimen on!");
         return "clampSpecimen on!";
     }
 
     @RequestMapping("/clampSpecimenOff")
     public String unSetState(){
-        writePortsState.unSetState();
+        clampSpecimen.unSetState();
         System.out.println("clampSpecimen off!");
         return "clampSpecimen off!";
     }

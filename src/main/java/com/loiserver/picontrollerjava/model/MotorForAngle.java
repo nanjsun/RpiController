@@ -6,17 +6,17 @@ import com.pi4j.wiringpi.Gpio;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MotorForHight implements Motors{
+public class MotorForAngle implements Motors{
     private GpioController gpio;
     private Pin pin;
     private GpioPinPwmOutput pwm;
     private GpioPinDigitalOutput motorEnable;
     private GpioPinDigitalOutput motorDirection;
 
-    public MotorForHight(){
+    public MotorForAngle(){
         pin = CommandArgumentParser.getPin(
                 RaspiPin.class,
-                RaspiPin.GPIO_01);
+                RaspiPin.GPIO_23);
 
         if(gpio == null){
             gpio = GpioFactory.getInstance();
@@ -54,7 +54,7 @@ public class MotorForHight implements Motors{
         }
         if(motorEnable == null){
 
-            motorEnable = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "enable hight motor", PinState.LOW);
+            motorEnable = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_24, "enable angle motor", PinState.LOW);
         }
 
         motorEnable.high();
@@ -65,7 +65,7 @@ public class MotorForHight implements Motors{
         }
         if(motorEnable == null){
 
-            motorEnable = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "enable hight motor", PinState.LOW);
+            motorEnable = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_24, "enable angle motor", PinState.LOW);
         }
         motorEnable.low();
     }
@@ -76,7 +76,7 @@ public class MotorForHight implements Motors{
         }
         if(motorDirection == null){
 
-            motorDirection = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "enable hight motor", PinState.LOW);
+            motorDirection = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_25, "enable angle motor", PinState.LOW);
         }
         motorDirection.high();
     }
@@ -87,7 +87,7 @@ public class MotorForHight implements Motors{
         }
         if(motorDirection == null){
 
-            motorDirection = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "enable hight motor", PinState.LOW);
+            motorDirection = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_25, "enable angle motor", PinState.LOW);
         }
         motorDirection.low();
     }

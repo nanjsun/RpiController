@@ -1,6 +1,6 @@
 package com.loiserver.picontrollerjava.controller;
 
-import com.loiserver.picontrollerjava.model.IgnitorFlamed;
+import com.loiserver.picontrollerjava.model.IgnitorFlameSensor;
 import com.loiserver.picontrollerjava.model.ReadPortsState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 @Component
 public class IgnitorFlamedController implements ReadPortsStateController{
     @Autowired
-    private ReadPortsState readPortsState;
+    private IgnitorFlameSensor ignitorFlameSensor;
 
     @RequestMapping("/ignitorFlamed")
     public String ignitorState(){
 
 //        if(ignitorFlamed == null){
-//            ignitorFlamed = new IgnitorFlamed();
+//            ignitorFlamed = new IgnitorFlameSensor();
 //        }
-        boolean ignitorFalamedState = readPortsState.getStat();
+        boolean ignitorFalamedState = ignitorFlameSensor.getStat();
 
         return "ignitor Flamed!" + "--->" + ignitorFalamedState;
 

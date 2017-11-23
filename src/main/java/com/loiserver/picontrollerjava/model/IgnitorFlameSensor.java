@@ -6,12 +6,12 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import org.springframework.stereotype.Component;
 
 @Component
-public class IgnitorFlamed implements ReadPortsState {
+public class IgnitorFlameSensor implements ReadPortsState {
     private GpioController gpio;
     private GpioPinDigitalInput ignitorFlameDetect;
     private boolean ignitorFlameState = false;
 
-    public IgnitorFlamed(){
+    public IgnitorFlameSensor(){
         gpio = GpioFactory.getInstance();
         ignitorFlameDetect = gpio.provisionDigitalInputPin(RaspiPin.GPIO_00, PinPullResistance.PULL_UP);
         ignitorFlameDetect.setShutdownOptions(true);
