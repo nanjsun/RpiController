@@ -19,8 +19,19 @@ public class IgnitorFlamed implements ReadPortsState {
         ignitorFlameDetect.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                System.out.println("button is pressed!");
-                ignitorFlameState = true;
+                if(ignitorFlameState){
+                    System.out.println("button is released!");
+                    ignitorFlameState = !ignitorFlameState;;
+
+                }
+                if(!ignitorFlameState){
+                    System.out.println("button is pressed!");
+                    ignitorFlameState = !ignitorFlameState;;
+
+                }
+
+
+
             }
         });
     }
