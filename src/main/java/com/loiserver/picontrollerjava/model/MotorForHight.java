@@ -27,18 +27,19 @@ public class MotorForHight implements Motors{
 //        frequency of PWM = 19.2MHZ/pwmsetRange()/pwmsetClock(),
 //        in this case ,f = 19200000/1000/500 = 38.4Hz
         com.pi4j.wiringpi.Gpio.pwmSetRange(5000);
-        com.pi4j.wiringpi.Gpio.pwmSetClock(5000);
+        com.pi4j.wiringpi.Gpio.pwmSetClock(5);
 
 
     }
 
-    public void pwnOutput(int pwnValue){
+    public void pwnOutput(int pwmValue){
         if(gpio == null){
             gpio = GpioFactory.getInstance();
         }
 
 //        set the duty cycle , in this case duty cycle = 500 /1000 = 0.5
-        pwm.setPwm(pwnValue);
+        pwm.setPwm(pwmValue/2);
+        com.pi4j.wiringpi.Gpio.pwmSetRange(pwmValue);
 
     }
     public void pwmShotduwn(){
