@@ -11,7 +11,7 @@ public class CommunicateWithCamera {
     public void setInformation(){
         InformationFromOpencvToPi informationFromOpencvToPi = new InformationFromOpencvToPi();
         informationFromOpencvToPi.setCameraOK(true);
-        informationFromOpencvToPi.setFunction("try");
+        informationFromOpencvToPi.setCommand("try");
         String jsonString = JSON.toJSONString(informationFromOpencvToPi);
 
         System.out.println(jsonString);

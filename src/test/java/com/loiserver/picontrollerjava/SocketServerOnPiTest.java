@@ -1,6 +1,6 @@
 package com.loiserver.picontrollerjava;
 
-import com.loiserver.picontrollerjava.model.SocketServerOnPi;
+import com.loiserver.picontrollerjava.model.socketServer.SocketServerOnPi;
 import org.junit.Test;
 
 public class SocketServerOnPiTest {
@@ -13,6 +13,7 @@ public class SocketServerOnPiTest {
             System.out.println("listening on 9899");
 
             socketServerOnPi.listen();
+            socketServerOnPi.stopListen();
         } catch (Exception e){
             e.printStackTrace();
         }
