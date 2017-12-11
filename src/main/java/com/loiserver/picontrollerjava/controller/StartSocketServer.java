@@ -1,6 +1,5 @@
 package com.loiserver.picontrollerjava.controller;
 
-import com.loiserver.picontrollerjava.model.IgnitorFlameSensor;
 import com.loiserver.picontrollerjava.model.operatingData.OperatingData;
 import com.loiserver.picontrollerjava.model.socketServer.SocketServerOnPi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Component
 public class StartSocketServer implements ReadPortsStateController{
-    @Autowired
-    private IgnitorFlameSensor ignitorFlameSensor;
 
     @Autowired
     private OperatingData operatingData;
@@ -24,13 +21,6 @@ public class StartSocketServer implements ReadPortsStateController{
 
     @RequestMapping("/startSocket")
     public String ignitorState() throws Exception{
-
-//        if(ignitorFlamed == null){
-//            ignitorFlamed = new IgnitorFlameSensor();
-//        }
-        boolean ignitorFalamedState = ignitorFlameSensor.getStat();
-
-        int igniortFlameLength = operatingData.getIgnitorFlameLength();
         if(!socketStart){
             try{
                 socketServerOnPi.listen();
@@ -39,10 +29,6 @@ public class StartSocketServer implements ReadPortsStateController{
                 e.printStackTrace();
             }
         }
-
-        return "ignitor Flamed!" + "--->" + ignitorFalamedState + "\n ignitorFlameLength = " + igniortFlameLength;
-
+        return "SocketServerStart:" + socketStart;
     }
-
-
 }
