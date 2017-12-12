@@ -23,20 +23,20 @@ public class InitMotors implements Init {
 
         motorForHight.motorSetEnable();;
         motorForHight.motorSetCw();
-        motorForHight.pwnOutput(2000);
+        motorForHight.pwmSetDuty(2000);
         while(defaultPositionSensorForHight.getStat() == false){
             System.out.println("initing motor for hight, please waiting!");
         }
-        motorForHight.pwmShotduwn();
+        motorForHight.pwmShutdown();
         System.out.println("motor for hight inited!");
 
         motorForAngle.motorSetEnable();
         motorForAngle.motorSetCw();
-        motorForAngle.pwnOutput(2000);
+        motorForAngle.pwmSetDuty(2000);
         while (defaultPositionSensorForAngle.getStat() == false){
             System.out.println("initing motor for angle, please waiting!");
         }
-        motorForAngle.pwmShotduwn();
+        motorForAngle.pwmShutdown();
         System.out.println("motor for angle inited!");
 
     }

@@ -2,98 +2,66 @@ package com.loiserver.picontrollerjava.model;
 
 import com.pi4j.io.gpio.*;
 import com.pi4j.util.CommandArgumentParser;
-import com.pi4j.wiringpi.Gpio;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MotorForHight implements Motors{
     private GpioController gpio;
-    private Pin pin;
+    private Pin pwmPin;
     private GpioPinPwmOutput pwm;
     private GpioPinDigitalOutput motorEnable;
     private GpioPinDigitalOutput motorDirection;
+    private int pwmRange = 4096;
+    private final Pin pwmPinNum = RaspiPin.GPIO_01;
+    private final Pin motorEnablePinNum = RaspiPin.GPIO_04;
+    private final Pin motorDirectionNum = RaspiPin.GPIO_05;
+
 
     public MotorForHight(){
-        pin = CommandArgumentParser.getPin(
+        pwmPin = CommandArgumentParser.getPin(
                 RaspiPin.class,
-                RaspiPin.GPIO_01);
-
+                pwmPinNum);
         if(gpio == null){
             gpio = GpioFactory.getInstance();
         }
 
-        pwm = gpio.provisionPwmOutputPin(pin);
+        motorEnable = gpio.provisionDigitalOutputPin(motorEnablePinNum, "enable motor", PinState.LOW);
+        motorDirection = gpio.provisionDigitalOutputPin(motorDirectionNum, "set direction of motor", PinState.LOW);
+        pwm = gpio.provisionPwmOutputPin(pwmPin);
         com.pi4j.wiringpi.Gpio.pwmSetMode(com.pi4j.wiringpi.Gpio.PWM_MODE_MS);
 //        frequency of PWM = 19.2MHZ/pwmsetRange()/pwmsetClock(),
-//        in this case ,f = 19200000/1000/500 = 38.4Hz
-        com.pi4j.wiringpi.Gpio.pwmSetRange(5000);
-        com.pi4j.wiringpi.Gpio.pwmSetClock(5);
-
-
+        com.pi4j.wiringpi.Gpio.pwmSetRange(pwmRange);
     }
 
-    public void pwnOutput(int pwmValue){
-        if(gpio == null){
-            gpio = GpioFactory.getInstance();
-        }
-
-//        set the duty cycle , in this case duty cycle = 500 /1000 = 0.5
-        pwm.setPwm(pwmValue/2);
-        com.pi4j.wiringpi.Gpio.pwmSetRange(pwmValue);
-
+    public void pwmSetFrequence(float frequence){
+        int pwmClock = (int)(19200000/pwmRange/frequence);
+        com.pi4j.wiringpi.Gpio.pwmSetClock(pwmClock);
+        System.out.println("pwmClock--:" + pwmClock);
     }
-    public void pwmShotduwn(){
-        if (gpio != null){
-//            gpio.shutdown();
-        }
+
+    public void pwmSetDuty(float pwmDuty){
+        int pwnValue = (int)(pwmDuty * pwmRange);
+        pwm.setPwm((int)(pwmDuty * pwmRange));
+        System.out.println("pwmValue--:" + pwnValue);
+    }
+
+    public void pwmShutdown(){
         pwm.setPwm(0);
-
     }
+
     public void motorSetEnable(){
-        if(gpio == null){
-            gpio = GpioFactory.getInstance();
-        }
-        if(motorEnable == null){
-
-            motorEnable = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "enable hight motor", PinState.LOW);
-        }
-
         motorEnable.high();
     }
-    public void motorSetDisable(){
-        if(gpio == null){
-            gpio = GpioFactory.getInstance();
-        }
-        if(motorEnable == null){
 
-            motorEnable = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "enable hight motor", PinState.LOW);
-        }
+    public void motorSetDisable(){
         motorEnable.low();
     }
 
     public void motorSetCw(){
-        if(gpio == null){
-            gpio = GpioFactory.getInstance();
-        }
-        if(motorDirection == null){
-
-            motorDirection = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "enable hight motor", PinState.LOW);
-        }
         motorDirection.high();
     }
 
     public void motorSetCCw(){
-        if(gpio == null){
-            gpio = GpioFactory.getInstance();
-        }
-        if(motorDirection == null){
-
-            motorDirection = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "enable hight motor", PinState.LOW);
-        }
         motorDirection.low();
     }
-
-
-
-
 }
