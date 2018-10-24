@@ -8,13 +8,13 @@ public class FixSpecimen implements WritePortsState {
     private GpioController gpio;
     private GpioPinDigitalOutput pin;
 
-    public FixSpecimen(){
+    public FixSpecimen() {
         gpio = GpioFactory.getInstance();
         pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_27, "fix Specimen", PinState.LOW);
 //        pin.setShutdownOptions(true, PinState.LOW);
     }
 
-    public void setStat(){
+    public void setStat() {
 //        if(gpio == null){
 //            gpio = GpioFactory.getInstance();
 //            pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_26, "clampSpecimen", PinState.LOW);
@@ -23,7 +23,7 @@ public class FixSpecimen implements WritePortsState {
         pin.high();
     }
 
-    public void unSetState(){
+    public void unSetState() {
 //        if(gpio == null){
 //            gpio = GpioFactory.getInstance();
 //            pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_26, "clampSpecimen", PinState.LOW);

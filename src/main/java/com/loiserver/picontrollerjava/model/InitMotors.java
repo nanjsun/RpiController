@@ -18,13 +18,13 @@ public class InitMotors implements Init {
     private DefaultPositionSensorForHight defaultPositionSensorForHight;
 
 
+    public void init() {
 
-    public void init(){
-
-        motorForHight.motorSetEnable();;
+        motorForHight.motorSetEnable();
+        ;
         motorForHight.motorSetCw();
         motorForHight.pwmSetDuty(2000);
-        while(defaultPositionSensorForHight.getStat() == false){
+        while (defaultPositionSensorForHight.getStat() == false) {
             System.out.println("initing motor for hight, please waiting!");
         }
         motorForHight.pwmShutdown();
@@ -33,7 +33,7 @@ public class InitMotors implements Init {
         motorForAngle.motorSetEnable();
         motorForAngle.motorSetCw();
         motorForAngle.pwmSetDuty(2000);
-        while (defaultPositionSensorForAngle.getStat() == false){
+        while (defaultPositionSensorForAngle.getStat() == false) {
             System.out.println("initing motor for angle, please waiting!");
         }
         motorForAngle.pwmShutdown();

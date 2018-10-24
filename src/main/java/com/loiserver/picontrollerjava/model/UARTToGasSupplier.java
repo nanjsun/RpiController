@@ -15,13 +15,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @Component
-public class UARTToGasSupplier implements UARTToActors{
+public class UARTToGasSupplier implements UARTToActors {
     private Serial serial;
     private ArrayList receivedFromGasSupplier = new ArrayList();
     private SerialConfig config;
 //    private int i;
 
-    public UARTToGasSupplier() throws IOException, InterruptedException{
+    public UARTToGasSupplier() throws IOException, InterruptedException {
 //        i = 10086;
         System.out.println("serial init begain!");
 //        receivedFromGasSupplier = new ArrayList();
@@ -47,7 +47,7 @@ public class UARTToGasSupplier implements UARTToActors{
             }
         });
 
-        try{
+        try {
             config = new SerialConfig();
 
             config.device(SerialPort.getDefaultPort())
@@ -61,8 +61,7 @@ public class UARTToGasSupplier implements UARTToActors{
 
             System.out.println("serial open!");
 
-        }
-        catch (InterruptedException e){
+        } catch (InterruptedException e) {
             System.out.println(e);
         }
 
@@ -71,26 +70,25 @@ public class UARTToGasSupplier implements UARTToActors{
     }
 
     @Override
-    public void sendToGasSupplier(String messageWillsent) throws IOException{
-        if(serial == null){
+    public void sendToGasSupplier(String messageWillsent) throws IOException {
+        if (serial == null) {
             serial = SerialFactory.createInstance();
 
         }
-        if(serial.isOpen() == false){
+        if (serial.isOpen() == false) {
             serial.open(config);
         }
 //        serial.
-        try{
+        try {
             serial.write(messageWillsent);
             System.out.println("send message!");
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             System.out.println("write to serial faild!" + e);
         }
     }
 
     @Override
-    public String getReceivedFromGasSupplierString(){
+    public String getReceivedFromGasSupplierString() {
         return receivedFromGasSupplier.toString();
     }
 

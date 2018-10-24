@@ -17,16 +17,17 @@ public class SocketServerOnPi {
     private OperatingData operatingData;
 
 
-    public SocketServerOnPi() throws Exception{
+    public SocketServerOnPi() throws Exception {
 //        server = new ServerSocket(port);
 //        client = null;
         this.port = 9899;
     }
-    public void listen() throws Exception{
+
+    public void listen() throws Exception {
         ServerSocket server = new ServerSocket(port);
 //        Socket client = null;
 
-        while (true){
+        while (true) {
             client = server.accept();
             System.out.println("connect client success!");
             new Thread(new SocketServerThread(client, operatingData)).start();
@@ -35,7 +36,7 @@ public class SocketServerOnPi {
 
     }
 
-    public void stopListen() throws Exception{
+    public void stopListen() throws Exception {
         server.close();
     }
 }

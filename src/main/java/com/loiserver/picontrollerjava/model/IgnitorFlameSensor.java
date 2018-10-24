@@ -11,7 +11,7 @@ public class IgnitorFlameSensor implements ReadPortsState {
     private GpioPinDigitalInput ignitorFlameDetect;
     private boolean ignitorFlameState = false;
 
-    public IgnitorFlameSensor(){
+    public IgnitorFlameSensor() {
         gpio = GpioFactory.getInstance();
         ignitorFlameDetect = gpio.provisionDigitalInputPin(RaspiPin.GPIO_00, PinPullResistance.PULL_UP);
         ignitorFlameDetect.setShutdownOptions(true);
@@ -19,24 +19,25 @@ public class IgnitorFlameSensor implements ReadPortsState {
         ignitorFlameDetect.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                if(ignitorFlameState){
+                if (ignitorFlameState) {
                     System.out.println("button is released!");
-                    ignitorFlameState = !ignitorFlameState;;
+                    ignitorFlameState = !ignitorFlameState;
+                    ;
 
                 }
-                if(!ignitorFlameState){
+                if (!ignitorFlameState) {
                     System.out.println("button is pressed!");
-                    ignitorFlameState = !ignitorFlameState;;
+                    ignitorFlameState = !ignitorFlameState;
+                    ;
 
                 }
-
 
 
             }
         });
     }
 
-    public boolean getStat(){
+    public boolean getStat() {
         return ignitorFlameState;
     }
 }

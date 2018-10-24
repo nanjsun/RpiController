@@ -9,18 +9,18 @@ public class IgnitorFlame implements WritePortsState {
     private GpioController gpio;
     private GpioPinDigitalOutput pin;
 
-    public IgnitorFlame(){
+    public IgnitorFlame() {
         gpio = GpioFactory.getInstance();
         pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06, "flame ignitor", PinState.LOW);
 //        pin.setShutdownOptions(true, PinState.LOW);
     }
 
-    public void setStat(){
+    public void setStat() {
 
         pin.high();
     }
 
-    public void unSetState(){
+    public void unSetState() {
 
         pin.low();
 

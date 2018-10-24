@@ -21,8 +21,8 @@ public class showAllStates {
     private IgnitorFlameSensor ignitorFlameSensor;
 
     @RequestMapping("/showAll")
-    public String getAllStates(){
+    public String getAllStates() {
         return "defaultHightSensor:" + defaultPositionSensorForHight.getStat() + "\\" + "defaultAngleSensor:" + defaultPositionSensorForAngle.getStat() +
-        "ignitorFlameSensor" + ignitorFlameSensor.getStat();
+                "ignitorFlameSensor" + ignitorFlameSensor.getStat();
     }
 }

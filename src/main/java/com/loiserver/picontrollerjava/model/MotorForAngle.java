@@ -5,7 +5,7 @@ import com.pi4j.util.CommandArgumentParser;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MotorForAngle implements Motors{
+public class MotorForAngle implements Motors {
     private GpioController gpio;
     private Pin pwmPin;
     private GpioPinPwmOutput pwm;
@@ -17,11 +17,11 @@ public class MotorForAngle implements Motors{
     private final Pin motorDirectionNum = RaspiPin.GPIO_25;
 
 
-    public MotorForAngle(){
+    public MotorForAngle() {
         pwmPin = CommandArgumentParser.getPin(
                 RaspiPin.class,
                 pwmPinNum);
-        if(gpio == null){
+        if (gpio == null) {
             gpio = GpioFactory.getInstance();
         }
 
@@ -33,35 +33,35 @@ public class MotorForAngle implements Motors{
         com.pi4j.wiringpi.Gpio.pwmSetRange(pwmRange);
     }
 
-    public void pwmSetFrequence(float frequence){
-        int pwmClock = (int)(19200000/pwmRange/frequence);
+    public void pwmSetFrequence(float frequence) {
+        int pwmClock = (int) (19200000 / pwmRange / frequence);
         com.pi4j.wiringpi.Gpio.pwmSetClock(pwmClock);
         System.out.println("pwmClock--:" + pwmClock);
     }
 
-    public void pwmSetDuty(float pwmDuty){
-        int pwnValue = (int)(pwmDuty * pwmRange);
-        pwm.setPwm((int)(pwmDuty * pwmRange));
+    public void pwmSetDuty(float pwmDuty) {
+        int pwnValue = (int) (pwmDuty * pwmRange);
+        pwm.setPwm((int) (pwmDuty * pwmRange));
         System.out.println("pwmValue--:" + pwnValue);
     }
 
-    public void pwmShutdown(){
+    public void pwmShutdown() {
         pwm.setPwm(0);
     }
 
-    public void motorSetEnable(){
+    public void motorSetEnable() {
         motorEnable.high();
     }
 
-    public void motorSetDisable(){
+    public void motorSetDisable() {
         motorEnable.low();
     }
 
-    public void motorSetCw(){
+    public void motorSetCw() {
         motorDirection.high();
     }
 
-    public void motorSetCCw(){
+    public void motorSetCCw() {
         motorDirection.low();
     }
 }

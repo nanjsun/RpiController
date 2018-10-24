@@ -6,15 +6,15 @@ import org.junit.Test;
 public class SocketServerOnPiTest {
     private SocketServerOnPi socketServerOnPi;
 
-//    @Test
+    //    @Test
     public void test() throws Exception {
-        try{
+        try {
             socketServerOnPi = new SocketServerOnPi();
             System.out.println("listening on 9899");
 
             socketServerOnPi.listen();
             socketServerOnPi.stopListen();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

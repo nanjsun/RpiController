@@ -1,9 +1,9 @@
 package com.loiserver.picontrollerjava.model;
 
-        import com.pi4j.io.gpio.*;
-        import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
-        import com.pi4j.io.gpio.event.GpioPinListenerDigital;
-        import org.springframework.stereotype.Component;
+import com.pi4j.io.gpio.*;
+import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
+import com.pi4j.io.gpio.event.GpioPinListenerDigital;
+import org.springframework.stereotype.Component;
 
 @Component
 public class DefaultPositionSensorForHight implements ReadPortsState {
@@ -11,7 +11,7 @@ public class DefaultPositionSensorForHight implements ReadPortsState {
     private GpioPinDigitalInput defaultPositionSensorDetect;
     private boolean defaultPositionSensorForHightState = false;
 
-    public DefaultPositionSensorForHight(){
+    public DefaultPositionSensorForHight() {
         gpio = GpioFactory.getInstance();
         defaultPositionSensorDetect = gpio.provisionDigitalInputPin(RaspiPin.GPIO_28, PinPullResistance.PULL_UP);
         defaultPositionSensorDetect.setShutdownOptions(true);
@@ -19,24 +19,24 @@ public class DefaultPositionSensorForHight implements ReadPortsState {
         defaultPositionSensorDetect.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                if(defaultPositionSensorForHightState){
+                if (defaultPositionSensorForHightState) {
                     System.out.println("out the default position for height!");
-                    defaultPositionSensorForHightState = !defaultPositionSensorForHightState;;
+                    defaultPositionSensorForHightState = !defaultPositionSensorForHightState;
+                    ;
 
-                }
-                else {
+                } else {
                     System.out.println("in the default position for height!");
-                    defaultPositionSensorForHightState = !defaultPositionSensorForHightState;;
+                    defaultPositionSensorForHightState = !defaultPositionSensorForHightState;
+                    ;
 
                 }
-
 
 
             }
         });
     }
 
-    public boolean getStat(){
+    public boolean getStat() {
         return defaultPositionSensorForHightState;
     }
 }

@@ -11,7 +11,7 @@ public class DefaultPositionSensorForAngle implements ReadPortsState {
     private GpioPinDigitalInput defaultPositionSensorForAngleDetect;
     private boolean defaultPositionSensorForAngleState = false;
 
-    public DefaultPositionSensorForAngle(){
+    public DefaultPositionSensorForAngle() {
         gpio = GpioFactory.getInstance();
         defaultPositionSensorForAngleDetect = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29, PinPullResistance.PULL_UP);
         defaultPositionSensorForAngleDetect.setShutdownOptions(true);
@@ -19,24 +19,24 @@ public class DefaultPositionSensorForAngle implements ReadPortsState {
         defaultPositionSensorForAngleDetect.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                if(defaultPositionSensorForAngleState){
+                if (defaultPositionSensorForAngleState) {
                     System.out.println("out the default position for height!");
-                    defaultPositionSensorForAngleState = !defaultPositionSensorForAngleState;;
+                    defaultPositionSensorForAngleState = !defaultPositionSensorForAngleState;
+                    ;
 
-                }
-                else {
+                } else {
                     System.out.println("in the default position for height!");
-                    defaultPositionSensorForAngleState = !defaultPositionSensorForAngleState;;
+                    defaultPositionSensorForAngleState = !defaultPositionSensorForAngleState;
+                    ;
 
                 }
-
 
 
             }
         });
     }
 
-    public boolean getStat(){
+    public boolean getStat() {
         return defaultPositionSensorForAngleState;
     }
 }

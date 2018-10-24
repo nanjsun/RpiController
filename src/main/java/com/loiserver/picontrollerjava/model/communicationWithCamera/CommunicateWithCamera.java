@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class CommunicateWithCamera {
-    public void setInformation(){
+    public void setInformation() {
         InformationFromOpencvToPi informationFromOpencvToPi = new InformationFromOpencvToPi();
         informationFromOpencvToPi.setCameraOK(true);
         informationFromOpencvToPi.setCommand("try");
@@ -18,24 +18,24 @@ public class CommunicateWithCamera {
 
         BufferedWriter writer = null;
         File file = new File("test.json");
-        if(!file.exists()){
+        if (!file.exists()) {
             try {
                 file.createNewFile();
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        try{
+        try {
             writer = new BufferedWriter(new FileWriter(file));
             writer.write(jsonString);
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
-                if(writer != null){
+                if (writer != null) {
                     writer.close();
                 }
-            } catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

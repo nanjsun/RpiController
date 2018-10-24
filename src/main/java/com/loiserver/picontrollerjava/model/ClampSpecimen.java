@@ -8,13 +8,13 @@ public class ClampSpecimen implements WritePortsState {
     private GpioController gpio;
     private GpioPinDigitalOutput pin;
 
-    public ClampSpecimen(){
+    public ClampSpecimen() {
         gpio = GpioFactory.getInstance();
         pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_26, "clampSpecimen", PinState.LOW);
 //        pin.setShutdownOptions(true, PinState.LOW);
     }
 
-    public void setStat(){
+    public void setStat() {
 //        if(gpio == null){
 //            gpio = GpioFactory.getInstance();
 //            pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_26, "clampSpecimen", PinState.LOW);
@@ -23,7 +23,7 @@ public class ClampSpecimen implements WritePortsState {
         pin.high();
     }
 
-    public void unSetState(){
+    public void unSetState() {
 //        if(gpio == null){
 //            gpio = GpioFactory.getInstance();
 //            pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_26, "clampSpecimen", PinState.LOW);

@@ -13,7 +13,7 @@ public class initMotorController {
     private InitMotors initMotors;
 
     @RequestMapping("/initMotors")
-    public String init(){
+    public String init() {
         initMotors.init();
         return "init motor done!";
     }

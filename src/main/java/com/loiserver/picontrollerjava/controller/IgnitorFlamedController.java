@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Component
-public class IgnitorFlamedController implements ReadPortsStateController{
+public class IgnitorFlamedController implements ReadPortsStateController {
     @Autowired
     private IgnitorFlameSensor ignitorFlameSensor;
 
@@ -21,7 +21,7 @@ public class IgnitorFlamedController implements ReadPortsStateController{
     private SocketServerOnPi socketServerOnPi;
 
     @RequestMapping("/ignitorFlamed")
-    public String ignitorState() throws Exception{
+    public String ignitorState() throws Exception {
 
         boolean ignitorFalamedState = ignitorFlameSensor.getStat();
 

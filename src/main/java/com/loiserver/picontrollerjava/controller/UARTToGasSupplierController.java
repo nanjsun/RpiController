@@ -12,17 +12,17 @@ import java.io.IOException;
 
 @RestController
 @Component
-public class UARTToGasSupplierController implements UARTToActorsController{
+public class UARTToGasSupplierController implements UARTToActorsController {
 
     private UARTToActors uartToActors;
 
     @Autowired(required = false)
-    public UARTToGasSupplierController(UARTToActors uartToActors){
+    public UARTToGasSupplierController(UARTToActors uartToActors) {
         this.uartToActors = uartToActors;
     }
 
     @RequestMapping("/uartsend")
-    public String sendMessage(@RequestParam("messageSendToGasSupplier") String messageSendToGasSupplier) throws IOException, NullPointerException, InterruptedException{
+    public String sendMessage(@RequestParam("messageSendToGasSupplier") String messageSendToGasSupplier) throws IOException, NullPointerException, InterruptedException {
 
         uartToActors.sendToGasSupplier(messageSendToGasSupplier);
         return "see that?";
@@ -30,7 +30,7 @@ public class UARTToGasSupplierController implements UARTToActorsController{
     }
 
     @RequestMapping("/uartreceive")
-    public String recceiveMessage() throws InterruptedException, IOException{
+    public String recceiveMessage() throws InterruptedException, IOException {
         uartToActors.getReceivedFromGasSupplierString();
         String message = uartToActors.getReceivedFromGasSupplierString();
         System.out.println("---> got this message ?");

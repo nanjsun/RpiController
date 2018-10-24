@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Component
-public class StartSocketServer implements ReadPortsStateController{
+public class StartSocketServer implements ReadPortsStateController {
 
     @Autowired
     private OperatingData operatingData;
@@ -20,12 +20,12 @@ public class StartSocketServer implements ReadPortsStateController{
     private boolean socketStart = false;
 
     @RequestMapping("/startSocket")
-    public String ignitorState() throws Exception{
-        if(!socketStart){
-            try{
+    public String ignitorState() throws Exception {
+        if (!socketStart) {
+            try {
                 socketServerOnPi.listen();
                 socketStart = true;
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

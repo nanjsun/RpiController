@@ -18,7 +18,7 @@ public class Specimen implements Specimens {
     @Autowired
     private MotorForAngle motorForAngle;
 
-    public void install(){
+    public void install() {
         initMotors.init();
 //        we got an rotator with ratio of 90:1.
         int rotateAngle = 45 + positionCode * 10 * 90;
@@ -28,21 +28,21 @@ public class Specimen implements Specimens {
 
     }
 
-    public void uninstall(){
+    public void uninstall() {
 
     }
-    public void setLength(int length){
+
+    public void setLength(int length) {
         this.length = length;
     }
 
-    public int getLength(){
+    public int getLength() {
         return this.length;
     }
 
-    public void setPositionCode(int positionCode){
+    public void setPositionCode(int positionCode) {
         this.positionCode = positionCode;
     }
-
 
 
 }
